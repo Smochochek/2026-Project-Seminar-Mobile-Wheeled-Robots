@@ -1,0 +1,61 @@
+#VRML_SIM R2025a utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+
+PROTO Seven [
+  field SFVec3f    translation 0 0 0.05
+  field SFRotation rotation    0 0 1 0
+  field SFColor    color       0.0 1.0 0.0
+  field SFFloat mass        1
+  field SFString   name        "Seven"
+]
+{
+  Solid {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    children [
+      # 1. Длинная ножка (идет вдоль оси Y, параллельно единице)
+      Pose {
+        translation 0 0 0
+        children [
+          Shape {
+            appearance DEF APP PBRAppearance {
+              baseColor IS color
+              roughness 1
+              metalness 0
+            }
+            geometry DEF LEG Box {
+              size 0.1 1.0 0.1
+            }
+          }
+        ]
+      }
+      # 2. Верхняя перекладина (пристыкована вверху, уходит влево)
+      Pose {
+        translation -0.15 0.45 0
+        children [
+          Shape {
+            appearance USE APP
+            geometry DEF TOP_BAR Box {
+              size 0.4 0.1 0.1
+            }
+          }
+        ]
+      }
+    ]
+    boundingObject Group {
+      children [
+        Pose {
+          translation 0 0 0
+          children [ USE LEG ]
+        }
+        Pose {
+          translation -0.15 0.45 0
+          children [ USE TOP_BAR ]
+        }
+      ]
+    }
+
+  }
+}
