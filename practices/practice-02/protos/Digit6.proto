@@ -1,0 +1,100 @@
+#VRML_SIM R2025a utf8
+
+PROTO Digit6 [
+  field SFVec3f    translation 0 0 0.1
+  field SFRotation rotation    0 0 1 0
+  field SFColor    color       0.5 0.5 0.5
+  field SFString   name        "Digit6"
+]
+{
+  Solid {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    children [
+      Pose {
+        translation 0 0.40 0
+        children [
+          Shape {
+            appearance DEF APP PBRAppearance {
+              baseColor IS color
+              roughness 1
+              metalness 0
+            }
+            geometry DEF TOP_BAR Box {
+              size 0.44 0.10 0.2
+            }
+          }
+        ]
+      }
+      Pose {
+        translation -0.17 0 0
+        children [
+          Shape {
+            appearance USE APP
+            geometry DEF LEFT_BAR Box {
+              size 0.10 0.90 0.2
+            }
+          }
+        ]
+      }
+      Pose {
+        translation 0 0 0
+        children [
+          Shape {
+            appearance USE APP
+            geometry DEF MID_BAR Box {
+              size 0.44 0.10 0.2
+            }
+          }
+        ]
+      }
+      Pose {
+        translation 0 -0.40 0
+        children [
+          Shape {
+            appearance USE APP
+            geometry DEF BOT_BAR Box {
+              size 0.44 0.10 0.2
+            }
+          }
+        ]
+      }
+      Pose {
+        translation 0.17 -0.20 0
+        children [
+          Shape {
+            appearance USE APP
+            geometry DEF RIGHT_BOT_BAR Box {
+              size 0.10 0.40 0.2
+            }
+          }
+        ]
+      }
+    ]
+    boundingObject Group {
+      children [
+        Pose {
+          translation 0 0.40 0
+          children [ USE TOP_BAR ]
+        }
+        Pose {
+          translation -0.17 0 0
+          children [ USE LEFT_BAR ]
+        }
+        Pose {
+          translation 0 0 0
+          children [ USE MID_BAR ]
+        }
+        Pose {
+          translation 0 -0.40 0
+          children [ USE BOT_BAR ]
+        }
+        Pose {
+          translation 0.17 -0.20 0
+          children [ USE RIGHT_BOT_BAR ]
+        }
+      ]
+    }
+  }
+}
