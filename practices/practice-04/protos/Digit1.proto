@@ -1,0 +1,29 @@
+#VRML_SIM R2025a utf8
+
+PROTO Digit1 [
+  field SFVec3f    translation 0 0 0.1
+  field SFRotation rotation    0 0 1 0
+  field SFVec3f    size        0.12 0.9 0.2
+  field SFColor    color       0.5 0.5 0.5
+  field SFString   name        "Digit1"
+]
+{
+  Solid {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    children [
+      Shape {
+        appearance DEF APP PBRAppearance {
+          baseColor IS color
+          roughness 1
+          metalness 0
+        }
+        geometry DEF STEM Box {
+          size IS size
+        }
+      }
+    ]
+    boundingObject USE STEM
+  }
+}
